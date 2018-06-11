@@ -15,7 +15,11 @@ const encoder = new UuidEncoder(characters);
 module.exports = {prefix, encode, decode, characters};
 
 function encode(str) {
-  return prefix + encoder.encode(str);
+  try {
+    return prefix + encoder.encode(str);
+  } catch (e) {
+    throw new TypeError('Encode must be called with a valid uuid.');
+  }
 }
 
 function decode(str) {
