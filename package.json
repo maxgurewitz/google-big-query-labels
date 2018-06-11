@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/maxgurewitz/google-big-query-uuid/issues"
   },
-  "homepage": "https://github.com/maxgurewitz/google-big-query-uuid#readme"
+  "homepage": "https://github.com/maxgurewitz/google-big-query-uuid#readme",
+  "dependencies": {
+    "uuid-encoder": "^1.1.0"
+  }
 }
