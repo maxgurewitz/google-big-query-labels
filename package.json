@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/maxgurewitz/google-big-query-uuid#readme",
   "dependencies": {
+    "big-integer": "^1.6.31",
     "uuid-encoder": "^1.1.0"
   },
   "devDependencies": {
