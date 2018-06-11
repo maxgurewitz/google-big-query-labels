@@ -1,6 +1,6 @@
 const uuidv1 = require('uuid/v1');
 const {expect} = require('chai');
-const {encode, decode, prefix} = require('../src/index.js');
+const {characters, encode, decode, prefix} = require('../src/index.js');
 
 describe('when provided a string to encode', () => {
 
@@ -10,6 +10,11 @@ describe('when provided a string to encode', () => {
   });
 
   it('encoded string only contains approved characters', () => {
+    const original = uuidv1();
+    const encoded = encode(original);
+    const filteredEncoded = encoded.split('')
+      .filter(char => characters.includes(char));
+    expect(filteredEncoded).to.have.lengthOf(encoded.length);
   });
 
   it('encoded string starts with a lower case letter', () => {
