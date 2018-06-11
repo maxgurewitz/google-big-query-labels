@@ -1,4 +1,4 @@
-const uuidEncoder = require('uuid-encoder');
+const UuidEncoder = require('uuid-encoder');
 
 const prefix = 'l';
 
@@ -10,10 +10,14 @@ for (let i = 0; i < 26; i++) {
 
 const characters = '_-0123456789' + lowerCase;
 
+const encoder = new UuidEncoder(characters);
+
 module.exports = {prefix, encode, decode, characters};
 
-function encode() {
+function encode(str) {
+  return prefix + encoder.encode(str);
 }
 
-function decode() {
+function decode(str) {
+  return encoder.decode(str.slice(1, str.length));
 }

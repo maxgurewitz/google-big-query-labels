@@ -1,7 +1,7 @@
 {
   "name": "google-big-query-uuid",
   "version": "1.0.0",
-  "description": "Encode content so that it's compatible with google big query labels.",
+  "description": "Encode uuid's so they are compatible with google big query labels.",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha test/**/*.spec.js"
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "uuid": "^3.2.1"
   }
 }
