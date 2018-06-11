@@ -18,6 +18,10 @@ describe('when provided a string to encode', () => {
   });
 
   it('encoded string starts with a lower case letter', () => {
+    const original = uuidv1();
+    const encoded = encode(original);
+    expect(encoded[0]).to.equal(prefix);
+    expect(prefix).to.match(/[a-z]/);
   });
 });
 
