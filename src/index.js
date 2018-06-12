@@ -1,12 +1,10 @@
 const bigInt = require('big-integer');
-const bases = require('bases');
-const baseConverter = require('bigint-base-converter');
 
 const prefix = 'l';
 const labelAlphabet = '_-0123456789abcdefghijklmnopqrstuvwxyz';
-const base36Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+const base64Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
-module.exports = {prefix, encode, decode, labelAlphabet};
+module.exports = {prefix, encode, decode, labelAlphabet, encodeBase64, decodeBase64};
 
 function encode(toEncode, originCharacters) {
   const bigIntArg = toEncode.split('').reduce((memo, char) => {
@@ -59,4 +57,12 @@ function decode(encoded, originCharacters) {
   }
 
   return decodedVal.toArray(originCharacters.length).value.map(digit => originCharacters[digit]).join('');
+}
+
+function encodeBase64(toEncode) {
+  return encode(toEncode, base64Alphabet);
+}
+
+function decodeBase64(encoded) {
+  return decode(encoded, base64Alphabet);
 }
