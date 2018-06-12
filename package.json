@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxgurewitz/google-big-query-uuid.git"
+    "url": "git+https://github.com/maxgurewitz/google-big-query-labels.git"
   },
   "keywords": [
     "google",
@@ -20,9 +20,9 @@
   "author": "Max Gurewitz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maxgurewitz/google-big-query-uuid/issues"
+    "url": "https://github.com/maxgurewitz/google-big-query-labels/issues"
   },
-  "homepage": "https://github.com/maxgurewitz/google-big-query-uuid#readme",
+  "homepage": "https://github.com/maxgurewitz/google-big-query-labels#readme",
   "dependencies": {
     "big-integer": "^1.6.31"
   },

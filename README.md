@@ -14,17 +14,11 @@ const encoded = encode(stringToEncode, base36Alphabet); // 'l834pvjszr_n'
 decode(encoded, base36Alphabet) // 'helloworld1'
 ```
 
-Helper method to re-encode strings which are in base 64.
-
-```javascript
-const {encode, decode} = require('google-big-query-labels');
-const base64Encoded = 'c29tZWJhc2U2NGVuY29kZWQ=';
-const encoded = encode(base64Encoded, base36Alphabet); // "l834pvjszr_n"
-decode(encoded, base36Alphabet) // "helloworld1"
-```
+Utility function to re-encode strings which are in base 64.
 
 ```javascript
 const {encodeBase64, decodeBase64} = require('google-big-query-labels');
 const base64Encoded = 'c29tZWJhc2U2NGVuY29kZWQ';
 const encoded = encodeBase64(base64Encoded); // 'l-a9qk8gqih_dsohfdkul2gafsz0'
+decodeBase64(encoded) // 'c29tZWJhc2U2NGVuY29kZWQ'
 ```
