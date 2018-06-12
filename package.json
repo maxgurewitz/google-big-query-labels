@@ -1,7 +1,7 @@
 {
-  "name": "google-big-query-uuid",
+  "name": "google-big-query-labels",
   "version": "1.0.0",
-  "description": "Encode uuid's so they are compatible with google big query labels.",
+  "description": "Encode strings so they are compatible with google big query labels.",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha test/**/*.spec.js"
@@ -14,7 +14,6 @@
     "google",
     "big",
     "query",
-    "uuid",
     "label",
     "labels"
   ],
@@ -25,8 +24,7 @@
   },
   "homepage": "https://github.com/maxgurewitz/google-big-query-uuid#readme",
   "dependencies": {
-    "big-integer": "^1.6.31",
-    "uuid-encoder": "^1.1.0"
+    "big-integer": "^1.6.31"
   },
   "devDependencies": {
     "chai": "^4.1.2",

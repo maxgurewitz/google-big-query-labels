@@ -1,47 +1,39 @@
 const uuidv1 = require('uuid/v1');
 const {expect} = require('chai');
-const {characters, encode, decode, prefix} = require('../src/index.js');
+const {labelAlphabet, encode, decode, prefix} = require('../src/index.js');
+const base36Alphabet = '0123456789abcdefghijklmnopqrstuvwxyz';
+const base64Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
-describe('when provided a string to encode', () => {
+describe('when labeling google big query metadata', () => {
+  describe('when provided a string to encode', () => {
 
-  it('throws an exception when not provided a uuid', () => {
-    const nonUuid = 'non uuid string';
-    expect(() => encode(nonUuid)).to.throw();
+    it('throws an when provided chars not in the alphabet', () => {
+      const nonUuid = '$%!';
+      expect(() => encode(nonUuid, 'abc')).to.throw();
+    });
+
+    it('encoded string only contains approved characters', () => {
+      const original = uuidv1().replace(/-/g, '');
+      const encoded = encode(original, base36Alphabet);
+      const filteredEncoded = encoded.split('')
+        .filter(char => labelAlphabet.includes(char));
+      expect(filteredEncoded).to.have.lengthOf(encoded.length);
+    });
+
+    it('encoded string starts with a lower case letter', () => {
+      const original = uuidv1().replace(/-/g, '');
+      const encoded = encode(original, base36Alphabet);
+      expect(encoded[0]).to.equal(prefix);
+      expect(prefix).to.match(/[a-z]/);
+    });
   });
 
-  it('encoded string only contains approved characters', () => {
-    const original = uuidv1();
-    const encoded = encode(original);
-    const filteredEncoded = encoded.split('')
-      .filter(char => characters.includes(char));
-    expect(filteredEncoded).to.have.lengthOf(encoded.length);
-  });
-
-  it('encoded string starts with a lower case letter', () => {
-    const original = uuidv1();
-    const encoded = encode(original);
-    expect(encoded[0]).to.equal(prefix);
-    expect(prefix).to.match(/[a-z]/);
-  });
-});
-
-describe('when provided a string to decode', () => {
-
-  it('returns original value when provided a standard base16 encoded uuid', () => {
-    const original = uuidv1();
-    const encoded = encode(original);
-    const decoded = decode(encoded);
-
-      // -384adb06-dc21-1e88-ea46-d46a7c19ffd
-      // +0384adb0-6dc2-11e8-8ea4-6d46a7c19ffd
-    expect(decoded).to.equal(original);
-  });
-
-  describe('returns original when provided a base64 encoded string', () => {
-    // const base64Encoded = 'IQFQZGazYDgTQbjLpte43jNLbw';
-    const base64Encoded = 'A';
-    const encoded = encode(base64Encoded, 64);
-    const decoded = decode(encoded, 64, false);
-    expect(decoded).to.equal(base64Encoded);
+  describe('when provided a string to decode', () => {
+    it('returns original when provided a base64 encoded string', () => {
+      const base64Encoded = 'IQFQZGazYDgTQbjLpte43jNLbw';
+      const encoded = encode(base64Encoded, base64Alphabet);
+      const decoded = decode(encoded, base64Alphabet);
+      expect(decoded).to.equal(base64Encoded);
+    });
   });
 });
