@@ -1,6 +1,6 @@
 const uuidv1 = require('uuid/v1');
 const {expect} = require('chai');
-const {labelAlphabet, encode, decode, prefix} = require('../src/index.js');
+const {encodeBase64Url, decodeBase64Url, labelAlphabet, encode, decode, prefix} = require('../src/index.js');
 const base36Alphabet = '0123456789abcdefghijklmnopqrstuvwxyz';
 const base64Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
@@ -34,6 +34,13 @@ describe('when labeling google big query metadata', () => {
       const encoded = encode(base64Encoded, base64Alphabet);
       const decoded = decode(encoded, base64Alphabet);
       expect(decoded).to.equal(base64Encoded);
+    });
+
+    it('returns original when provided a base64Url encoded string', () => {
+      const toEncode = 'IQFQZGazYDgTQbjLpte43jNLbw-_';
+      const encoded = encodeBase64Url(toEncode);
+      const decoded = decodeBase64Url(encoded);
+      expect(decoded).to.equal(toEncode);
     });
   });
 });

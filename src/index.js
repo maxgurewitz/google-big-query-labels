@@ -13,7 +13,7 @@ module.exports = {
   encodeBase64,
   decodeBase64,
   encodeBase64Url,
-  encodeBase64Url
+  decodeBase64Url
 };
 
 function encode(toEncode, originCharacters) {
@@ -81,6 +81,6 @@ function encodeBase64Url(toEncode) {
   return encode(toEncode, base64UrlAlphabet);
 }
 
-function encodeBase64Url(toEncode) {
-  return encode(toEncode, base64UrlAlphabet);
+function decodeBase64Url(toDecode) {
+  return decode(toDecode, base64UrlAlphabet);
 }
