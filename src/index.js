@@ -31,7 +31,7 @@ function encode(toEncode, originCharacters) {
   try {
     encodedVal = bigInt(bigIntArg, originCharacters.length);
   } catch (e) {
-    throw new TypeError(`${uuid} is not a valid base ${base} string.`);
+    throw new TypeError(`${toEncode} is not a valid base ${base} string.`);
   }
 
   let str = '';
