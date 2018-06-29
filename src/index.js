@@ -25,7 +25,9 @@ function encode(toEncode, originCharacters) {
     }
 
     return memo + `<${index}>`;
-  }, '');
+  // Prefixing with 1 to handle the case that the encoded string begins with
+  // the first character in the provided alphabet e.g. A in base64Url.
+  }, '1');
 
   let encodedVal;
   try {
@@ -66,7 +68,12 @@ function decode(encoded, originCharacters) {
 
   }
 
-  return decodedVal.toArray(originCharacters.length).value.map(digit => originCharacters[digit]).join('');
+  const chars = decodedVal.toArray(originCharacters.length).value.map(digit => originCharacters[digit]);
+
+  // Again, handles the leading 0 char index case.
+  chars.shift();
+
+  return chars.join('');
 }
 
 function encodeBase64(toEncode) {

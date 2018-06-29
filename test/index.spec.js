@@ -42,5 +42,12 @@ describe('when labeling google big query metadata', () => {
       const decoded = decodeBase64Url(encoded);
       expect(decoded).to.equal(toEncode);
     });
+
+    it("Does not remove A's from base64Url encoded strings", () => {
+      const toEncode = 'AQIc2RJWLGf7DfSBX1_-zjJqIg';
+      const encoded = encodeBase64Url(toEncode);
+      const decoded = decodeBase64Url(encoded);
+      expect(decoded).to.equal(toEncode);
+    });
   });
 });
